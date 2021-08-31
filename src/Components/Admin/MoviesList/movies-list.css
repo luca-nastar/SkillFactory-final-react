@@ -1,0 +1,36 @@
+.movies-list {
+	position: relative;
+	margin: auto;
+	margin-top: 1.5rem;
+	padding: 1.5rem;
+	background-color: #fff;
+	border-radius: 5px;
+	width: 79rem;
+	box-sizing: border-box;
+}
+
+.title {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.title button {
+	margin-top: 0.3rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background: none;
+	border: none;
+	background-color: #28a745;
+	width: 3rem;
+	height: 3rem;
+	color: #fff;
+	border-radius: 100%;
+	font-size: 1.5rem;
+}
+
+.title button:hover {
+	background-color: #218839;
+}

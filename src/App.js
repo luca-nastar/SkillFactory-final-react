@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Toaster } from "react-hot-toast";
+import {
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+} from "react-router-dom";
+import routes from "./Config/routes";
+import AuthProvider from "./Providers/authProvider";
+
+const RouterWithSubRoutes = ({ route }) => {
+	return (
+		<Route
+			path={route.path}
+			exact={route.exact}
+			render={(props) => <route.component routes={route.routes} {...props} />}
+		/>
+	);
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<AuthProvider>
+			<Toaster />
+			<Router>
+				<Switch>
+					{routes.map((route, idx) => (
+						<RouterWithSubRoutes key={idx} route={route} />
+					))}
+				</Switch>
+				<Route exact path="/" component={() => <Redirect to="/movies" />} />
+			</Router>
+		</AuthProvider>
+	);
 }
 
 export default App;
